@@ -14,13 +14,13 @@
 
 ## What each symbol on a plan means ?
 
-"#" - it's wall of your world, nobody can go out through this wall.
-"O" - it's "beings".
-"@" - it's "predators"
+ * "#" - it's wall of your world, nobody can go out through this wall.
+ * "O" - it's "beings".
+ * "@" - it's "predators"
 
 ## How to change plan ?
 
-For changing plan you need drow you version of World.
+For changing plan you need creating your version of World.
 You can put wall in any place where you want.
 You can put "beings" and "predators" in any place where you want and how many you want.
 
