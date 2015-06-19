@@ -4,6 +4,25 @@
 
  We created electronic world with some "beings" and "predators". "Beings" just walking, eating "plants" and "reproducing".
  "Predators" eating "beings" and "reproducing". "Plants" just "reproducing" ;)
+ 
+ ####################################################
+ # @               ####         ****              ###
+ #   *  @  ##                 ########       OO    ##
+ #   *    ##        O O                 ****       *#
+ #       ##*                        ##########     *#
+ #      ##***  *         ****                     **#
+ #* **  #  *  ***      #########                  **#
+ #* **  #      *               #   *              **#
+ #     ##              #   O   #  ***          ######
+ #*            @       #       #   *        O  #    #
+ #*                    #  ######                 ** #
+ #####        ****          ***                  ** #
+ #***#   O                        @         O       #
+ # O #     ##  ##  ##  ##               ###      *  #
+ #***#*         #              *       #####  O     #
+ ##  #*  O   O  #  #    ***  ***        ###      ** #
+ ###               #   *****                    ****#
+ ####################################################
 
 
 ## How to run it?
