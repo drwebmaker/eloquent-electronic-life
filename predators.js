@@ -1,6 +1,7 @@
 function Tiger() {
   this.energy = 60;
   this.direction = randomElement(Object.keys(directions));
+  this.eatCounter = 1;
 }
 Tiger.prototype.act = function (view) {
   var space = view.find(' ');
@@ -8,10 +9,16 @@ Tiger.prototype.act = function (view) {
   var plant = view.find('*');
 
   if (critter) {
-    return {type: 'eat', direction: critter};
+    var critters = view.findAll('O');
+    if (critters.length > 2) {
+      return {type: 'move', direction: this.direction};
+    }
+    else {
+      return {type: 'eat', direction: critter};
+    }
   }
 
-  if (this.energy > 140 && space) {
+  if (this.energy > 120 && space) {
     //console.log('reproduce');
     return {type: 'reproduce', direction: randomElement(space)};
   }
