@@ -1,4 +1,5 @@
 var GridModule = (function () {
+
   function Vector(x, y) {
     this.x = x;
     this.y = y;
@@ -8,7 +9,7 @@ var GridModule = (function () {
       return new Vector(this.x + other.x, this.y + other.y);
     },
     toString: function() {
-      return 'VECTOR: WIDTH: ' + this.width + ' HEIGHT: ' + this.height;
+      return 'VECTOR: X: ' + this.x + ' Y: ' + this.y;
     }
   };
 

@@ -38,7 +38,6 @@
   };
 
   Animated.prototype.tick = function() {
-    console.log(this.world.toString());
     this.world.turn();
     this.pre.removeChild(this.pre.firstChild);
     this.pre.appendChild(this.pre.ownerDocument.createTextNode(this.world.toString()));

@@ -29,7 +29,7 @@ var WorldModule = (function () {
 
   View.prototype = {
     look: function(dir) {
-      var target = this.vector.plus(GridModule.directions[dir]);
+      var target = this.vector.plus(directions[dir]);
       if (this.world.grid.isInside(target))
         return charFromElement(this.world.grid.get(target));
       else
@@ -37,7 +37,7 @@ var WorldModule = (function () {
     },
     findAll: function(ch) {
       var found = [];
-      for (var dir in GridModule.directions)
+      for (var dir in directions)
         if (this.look(dir) == ch)
           found.push(dir);
       return found;
@@ -96,9 +96,9 @@ var WorldModule = (function () {
       }
     },
     checkDestination: function(action, vector) {
-      if (directions.hasOwnProperty(action.GridModule.direction)) {
-        var dest = vector.plus(directions[action.GridModule.direction]);
-        if (this.grid.GridModule.isInside(dest))
+      if (directions.hasOwnProperty(action.direction)) {
+        var dest = vector.plus(directions[action.direction]);
+        if (this.grid.isInside(dest))
           return dest;
       }
     }
@@ -112,9 +112,8 @@ var WorldModule = (function () {
 
   LifelikeWorld.prototype = Object.create(World.prototype);
 
-  LifelikeWorld.prototype = {
-    letAct: function(critter, vector) {
-      var action = critter.act(new GridModule.View(this, vector));
+  LifelikeWorld.prototype.letAct = function(critter, vector) {
+      var action = critter.act(new View(this, vector));
       var handled = action &&
         action.type in actionTypes &&
         actionTypes[action.type].call(this, critter,
@@ -124,7 +123,7 @@ var WorldModule = (function () {
         if (critter.energy <= 0)
           this.grid.set(vector, null);
       }
-    }
+
   };
 
   var actionTypes = Object.create(null);
@@ -177,12 +176,9 @@ var WorldModule = (function () {
 
   return {
     randomElement: randomElement,
-    elementFromChar: elementFromChar,
-    charFromElement: charFromElement,
     View: View,
     World: World,
-    LifelikeWorld: LifelikeWorld,
-    actionTypes: actionTypes
+    LifelikeWorld: LifelikeWorld
   }
 
 }());
