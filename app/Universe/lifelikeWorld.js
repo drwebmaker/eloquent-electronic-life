@@ -1,45 +1,21 @@
-var WorldModule = (function (root, world) {
-
-  function randomElement(array) {
-    return array[Math.floor(Math.random() * array.length)];
-  }
-
-  function elementFromChar(legend, ch) {
-    if (ch == ' ')
-      return null;
-    var element = new legend[ch]();
-    element.originChar = ch;
-    return element;
-  }
-
-  function charFromElement(element) {
-    if (element == null)
-      return ' ';
-    else
-      return element.originChar;
-  }
-
-
-
-
-//------------------------------LifelikeWorld-------------------------------------
+(function(module){
   function LifelikeWorld(map, legend) {
-    world.call(this, map, legend);
+    module.World.call(this, map, legend);
   }
 
-  LifelikeWorld.prototype = Object.create(world.prototype);
+  LifelikeWorld.prototype = Object.create(module.World.prototype);
 
   LifelikeWorld.prototype.letAct = function(critter, vector) {
-      var action = critter.act(new View(this, vector));
-      var handled = action &&
-        action.type in actionTypes &&
-        actionTypes[action.type].call(this, critter,
-          vector, action);
-      if (!handled) {
-        critter.energy -= 0.2;
-        if (critter.energy <= 0)
-          this.grid.set(vector, null);
-      }
+    var action = critter.act(new module.View(this, vector));
+    var handled = action &&
+      action.type in actionTypes &&
+      actionTypes[action.type].call(this, critter,
+        vector, action);
+    if (!handled) {
+      critter.energy -= 0.2;
+      if (critter.energy <= 0)
+        this.grid.set(vector, null);
+    }
 
   };
 
@@ -75,7 +51,7 @@ var WorldModule = (function (root, world) {
     },
 
     reproduce: function(critter, vector, action) {
-      var baby = elementFromChar(this.legend,
+      var baby = module.elementFromChar(this.legend,
         critter.originChar);
       var dest = this.checkDestination(action, vector);
       if (dest == null ||
@@ -89,11 +65,6 @@ var WorldModule = (function (root, world) {
 
   };
 
-  return {
-    randomElement: randomElement,
-    LifelikeWorld: LifelikeWorld,
-    elementFromChar: elementFromChar,
-    charFromElement: charFromElement
-  }
+  module.LifelikeWorld = LifelikeWorld;
 
-}(GridModule, WORLD));
+}(elife));

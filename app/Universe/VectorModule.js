@@ -1,4 +1,4 @@
-var VectordModule = (function () {
+(function (module) {
 
   function Vector(x, y) {
     this.x = x;
@@ -28,11 +28,8 @@ var VectordModule = (function () {
 
   var directionNames = 'n ne e se s sw w nw'.split(' ');
 
+  module.Vector = Vector;
+  module.directions = directions;
+  module.directionNames = directionNames;
 
-
-  return {
-    Vector: Vector,
-    directions: directions,
-    directionNames: directionNames
-  }
-}());
+}(elife));

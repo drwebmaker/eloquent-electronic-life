@@ -1,6 +1,6 @@
 // test: no
 
-(function() {
+(function(module) {
   "use strict";
 
   var active = null;
@@ -51,4 +51,6 @@
   };
 
   window.animateWorld = function(world) { new Animated(world); };
-})();
+
+  module.animateWorld = animateWorld;
+})(elife);

@@ -1,4 +1,4 @@
-var MAP = (function(){
+(function(module){
 
   var plan = ['####################################################',
     '# @               ####         ****              ###',
@@ -20,17 +20,15 @@ var MAP = (function(){
     '####################################################'];
 
   var description ={
-    '#':  EcosystemModule.Wall,
-    '@': EcosystemModule.Tiger,
-    'O': EcosystemModule.SmartPlantEater,
-    '*': EcosystemModule.Plant
+    '#':  module.Wall,
+    '@': module.Tiger,
+    'O': module.PlantEater,
+    '*': module.Plant
   };
 
-  var valley = new WorldModule.LifelikeWorld(
+  var valley = new module.LifelikeWorld(
     plan, description);
 
-  return {
-    valley: valley
-  }
+  module.valley = valley;
 
-}());
+}(elife));
