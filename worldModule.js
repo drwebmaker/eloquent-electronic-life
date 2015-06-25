@@ -1,4 +1,4 @@
-var WorldModule = (function () {
+var WorldModule = (function (root, world) {
 
   function randomElement(array) {
     return array[Math.floor(Math.random() * array.length)];
@@ -21,96 +21,13 @@ var WorldModule = (function () {
 
 
 
-//------------------------------------VIEW-------------------------------
-  function View(world, vector) {
-    this.world = world;
-    this.vector = vector;
-  }
-
-  View.prototype = {
-    look: function(dir) {
-      var target = this.vector.plus(directions[dir]);
-      if (this.world.grid.isInside(target))
-        return charFromElement(this.world.grid.get(target));
-      else
-        return '#';
-    },
-    findAll: function(ch) {
-      var found = [];
-      for (var dir in directions)
-        if (this.look(dir) == ch)
-          found.push(dir);
-      return found;
-    },
-    find: function(ch) {
-      var found = this.findAll(ch);
-      if (found.length == 0) return null;
-      return randomElement(found);
-    }
-  };
-
-
-
-//---------------------------------WORLD---------------------------------------
-  function World(map, legend) {
-    var grid = new GridModule.Grid(map[0].length, map.length);
-    this.grid = grid;
-    this.legend = legend;
-    console.log(grid.toString());
-
-    map.forEach(function(line, y) {
-      for (var x = 0; x < line.length; x++)
-        grid.set(new GridModule.Vector(x, y),
-          elementFromChar(legend, line[x]));
-    });
-  }
-  World.prototype = {
-    toString: function() {
-      var output = '';
-      for (var y = 0; y < this.grid.height; y++) {
-        for (var x = 0; x < this.grid.width; x++) {
-          var element = this.grid.get(new GridModule.Vector(x, y));
-          output += charFromElement(element);
-        }
-        output += '\n';
-      }
-      return output;
-    },
-    turn: function() {
-      var acted = [];
-      this.grid.forEach(function(critter, vector) {
-        if (critter.act && acted.indexOf(critter) == -1) {
-          acted.push(critter);
-          this.letAct(critter, vector);
-        }
-      }, this);
-    },
-    letAct: function(critter, vector) {
-      var action = critter.act(new View(this, vector));
-      if (action && action.type == 'move') {
-        var dest = this.checkDestination(action, vector);
-        if (dest && this.grid.get(dest) == null) {
-          this.grid.set(vector, null);
-          this.grid.set(dest, critter);
-        }
-      }
-    },
-    checkDestination: function(action, vector) {
-      if (directions.hasOwnProperty(action.direction)) {
-        var dest = vector.plus(directions[action.direction]);
-        if (this.grid.isInside(dest))
-          return dest;
-      }
-    }
-  };
-
 
 //------------------------------LifelikeWorld-------------------------------------
   function LifelikeWorld(map, legend) {
-    World.call(this, map, legend);
+    world.call(this, map, legend);
   }
 
-  LifelikeWorld.prototype = Object.create(World.prototype);
+  LifelikeWorld.prototype = Object.create(world.prototype);
 
   LifelikeWorld.prototype.letAct = function(critter, vector) {
       var action = critter.act(new View(this, vector));
@@ -172,13 +89,11 @@ var WorldModule = (function () {
 
   };
 
-  var directions = GridModule.directions;
-
   return {
     randomElement: randomElement,
-    View: View,
-    World: World,
-    LifelikeWorld: LifelikeWorld
+    LifelikeWorld: LifelikeWorld,
+    elementFromChar: elementFromChar,
+    charFromElement: charFromElement
   }
 
-}());
+}(GridModule, WORLD));

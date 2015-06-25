@@ -83,7 +83,7 @@ var EcosystemModule = (function () {
 //------------------------------Tiger-----------------------------------
   function Tiger() {
     this.energy = 60;
-    this.direction = WorldModule.randomElement(Object.keys(GridModule.directions));
+    this.direction = WorldModule.randomElement(Object.keys(VectordModule.directions));
     this.eatCounter = 1;
   }
   Tiger.prototype = {
