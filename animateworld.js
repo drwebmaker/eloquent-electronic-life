@@ -1,6 +1,6 @@
 // test: no
 
-(function() {
+define(['Plan'], function(world) {
   "use strict";
 
   var active = null;
@@ -51,4 +51,6 @@
   };
 
   window.animateWorld = function(world) { new Animated(world); };
-})();
+  return new Animated(world);
+
+});
