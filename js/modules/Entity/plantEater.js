@@ -1,15 +1,18 @@
-define(['Vector', 'View'],
-  function(vector, viewM){
+define(function(require){
+
+    var Vector = require('Vector');
+    var View = require('View');
+
     function PlantEater() {
       this.energy = 30;
-      this.direction = viewM.randomElement(Object.keys(vector.directions));
+      this.direction = View.randomElement(Object.keys(Vector.directions));
       this.eatCounter = 1;
     }
     PlantEater.prototype = {
       act: function(view) {
         var space = view.find(' ');
         if (this.energy > 60 && space) {
-          return {type: 'reproduce', direction: viewM.randomElement(space)};
+          return {type: 'reproduce', direction: View.randomElement(space)};
         }
 
         var plant = view.findAll('*');
@@ -17,7 +20,7 @@ define(['Vector', 'View'],
 
           if (this.eatCounter >= 0) {
             this.eatCounter = 0;
-            return {type: "eat", direction: viewM.randomElement(plant)};
+            return {type: "eat", direction: View.randomElement(plant)};
           } else {
             this.eatCounter++;
           }

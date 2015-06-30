@@ -1,7 +1,11 @@
-define(['Vector', 'View'], function(vector, view){
+define(function(require){
+
+  var Vector = require('Vector');
+  var View = require('View');
+
   function Tiger() {
     this.energy = 60;
-    this.direction = view.randomElement(Object.keys(vector.directions));
+    this.direction = View.randomElement(Object.keys(Vector.directions));
     this.eatCounter = 1;
   }
   Tiger.prototype = {
@@ -21,7 +25,7 @@ define(['Vector', 'View'], function(vector, view){
       }
 
       if (this.energy > 120 && space) {
-        return {type: 'reproduce', direction: view.randomElement(space)};
+        return {type: 'reproduce', direction: View.randomElement(space)};
       }
 
       if (space) {

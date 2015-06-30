@@ -1,4 +1,4 @@
-define('Vector', function () {
+define(function () {
 
   function Vector(x, y) {
     this.x = x;

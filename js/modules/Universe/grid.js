@@ -1,4 +1,7 @@
-define('Grid', ['Vector'], function (vector) {
+define(function (require) {
+
+  var Vector = require('Vector');
+
   function Grid(width, height) {
     this.space = new Array(width * height);
     this.width = width;
@@ -15,7 +18,7 @@ define('Grid', ['Vector'], function (vector) {
         for (var x = 0; x < this.width; x++) {
           var value = this.space[x + y * this.width];
           if (value != null)
-            f.call(context, value, new vector.Vector(x, y));
+            f.call(context, value, new Vector.Vector(x, y));
         }
       }
     },

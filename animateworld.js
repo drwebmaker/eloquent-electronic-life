@@ -1,7 +1,9 @@
 // test: no
 
-define(['Plan'], function(world) {
+define(function(world) {
   "use strict";
+
+  var world = require('Plan');
 
   var active = null;
 

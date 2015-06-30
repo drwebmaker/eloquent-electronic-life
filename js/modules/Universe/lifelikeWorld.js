@@ -1,12 +1,16 @@
-define(['World', 'View'], function(moduleW, view){
+define(function(require){
+
+  var View = require('View');
+  var World = require('World');
+  
   function LifelikeWorld(map, legend) {
-    moduleW.World.call(this, map, legend);
+    World.World.call(this, map, legend);
   }
 
-  LifelikeWorld.prototype = Object.create(moduleW.World.prototype);
+  LifelikeWorld.prototype = Object.create(World.World.prototype);
 
   LifelikeWorld.prototype.letAct = function(critter, vector) {
-    var action = critter.act(new view.View(this, vector));
+    var action = critter.act(new View.View(this, vector));
     var handled = action &&
       action.type in actionTypes &&
       actionTypes[action.type].call(this, critter,
@@ -51,7 +55,7 @@ define(['World', 'View'], function(moduleW, view){
     },
 
     reproduce: function(critter, vector, action) {
-      var baby = view.elementFromChar(this.legend,
+      var baby = View.elementFromChar(this.legend,
         critter.originChar);
       var dest = this.checkDestination(action, vector);
       if (dest == null ||

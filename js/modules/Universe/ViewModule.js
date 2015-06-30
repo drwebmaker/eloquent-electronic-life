@@ -1,4 +1,7 @@
-define('View', ['Vector'], function (vector) {
+define(function (require) {
+
+  var Vector = require('Vector');
+
   function View(world, vector) {
     this.world = world;
     this.vector = vector;
@@ -6,7 +9,7 @@ define('View', ['Vector'], function (vector) {
 
   View.prototype = {
     look: function(dir) {
-      var target = this.vector.plus(vector.directions[dir]);
+      var target = this.vector.plus(Vector.directions[dir]);
       if (this.world.grid.isInside(target))
         return charFromElement(this.world.grid.get(target));
       else
@@ -14,7 +17,7 @@ define('View', ['Vector'], function (vector) {
     },
     findAll: function(ch) {
       var found = [];
-      for (var dir in vector.directions)
+      for (var dir in Vector.directions)
         if (this.look(dir) == ch)
           found.push(dir);
       return found;

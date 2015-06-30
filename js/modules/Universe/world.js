@@ -1,13 +1,18 @@
-define('World', ['Grid', 'Vector', 'View'], function(gridM, vectorM, view) {
+define(function(require) {
+
+  var Vector = require('Vector');
+  var Grid = require('Grid');
+  var View = require('View');
+
   function World(map, legend) {
-    var grid = new gridM.Grid(map[0].length, map.length);
+    var grid = new Grid.Grid(map[0].length, map.length);
     this.grid = grid;
     this.legend = legend;
 
     map.forEach(function(line, y) {
       for (var x = 0; x < line.length; x++)
-        grid.set(new vectorM.Vector(x, y),
-          view.elementFromChar(legend, line[x]));
+        grid.set(new Vector.Vector(x, y),
+          View.elementFromChar(legend, line[x]));
     });
   }
 
@@ -16,8 +21,8 @@ define('World', ['Grid', 'Vector', 'View'], function(gridM, vectorM, view) {
       var output = '';
       for (var y = 0; y < this.grid.height; y++) {
         for (var x = 0; x < this.grid.width; x++) {
-          var element = this.grid.get(new vectorM.Vector(x, y));
-          output += view.charFromElement(element);
+          var element = this.grid.get(new Vector.Vector(x, y));
+          output += View.charFromElement(element);
         }
         output += '\n';
       }
@@ -33,7 +38,7 @@ define('World', ['Grid', 'Vector', 'View'], function(gridM, vectorM, view) {
       }, this);
     },
     letAct: function(critter, vector) {
-      var action = critter.act(new view.View(this, vector));
+      var action = critter.act(new View.View(this, vector));
       if (action && action.type == 'move') {
         var dest = this.checkDestination(action, vector);
         if (dest && this.grid.get(dest) == null) {
@@ -43,8 +48,8 @@ define('World', ['Grid', 'Vector', 'View'], function(gridM, vectorM, view) {
       }
     },
     checkDestination: function(action, vector) {
-      if (vectorM.directions.hasOwnProperty(action.direction)) {
-        var dest = vector.plus(vectorM.directions[action.direction]);
+      if (Vector.directions.hasOwnProperty(action.direction)) {
+        var dest = vector.plus(Vector.directions[action.direction]);
         if (this.grid.isInside(dest))
           return dest;
       }

@@ -1,5 +1,5 @@
 define(
-  function(module){
+  function(require){
     function Plant() {
       this.energy = 3 + Math.random() * 4;
     }
