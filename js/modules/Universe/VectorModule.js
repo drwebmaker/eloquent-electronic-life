@@ -1,5 +1,3 @@
-define(function () {
-
   function Vector(x, y) {
     this.x = x;
     this.y = y;
@@ -29,10 +27,8 @@ define(function () {
   var directionNames = 'n ne e se s sw w nw'.split(' ');
 
 
-  return {
+  module.exports = {
     Vector: Vector,
     directions: directions,
     directionNames: directionNames
     };
-
-});

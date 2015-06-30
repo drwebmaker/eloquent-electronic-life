@@ -1,5 +1,3 @@
-define(
-  function(require){
     function Plant() {
       this.energy = 3 + Math.random() * 4;
     }
@@ -16,8 +14,4 @@ define(
       }
     };
 
-    return {
-      Plant: Plant
-    };
-  }
-);
+    module.exports = Plant;

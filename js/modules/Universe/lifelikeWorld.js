@@ -1,7 +1,5 @@
-define(function(require){
-
-  var View = require('View');
-  var World = require('World');
+  var View = require('./ViewModule');
+  var World = require('./world');
   
   function LifelikeWorld(map, legend) {
     World.World.call(this, map, legend);
@@ -10,7 +8,7 @@ define(function(require){
   LifelikeWorld.prototype = Object.create(World.World.prototype);
 
   LifelikeWorld.prototype.letAct = function(critter, vector) {
-    var action = critter.act(new View.View(this, vector));
+    var action = critter.act(new View(this, vector));
     var handled = action &&
       action.type in actionTypes &&
       actionTypes[action.type].call(this, critter,
@@ -69,10 +67,4 @@ define(function(require){
 
   };
 
-  return {
-    LifelikeWorld: LifelikeWorld
-  };
-
-
-
-});
+  module.exports = LifelikeWorld;

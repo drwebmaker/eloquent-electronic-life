@@ -1,10 +1,8 @@
-define(function(require){
-
-    var Tiger = require('Tiger');
-    var World = require('World');
-    var PlantEater = require('PlantEater');
-    var Plant = require('Plant');
-    var LifelikeWorld = require('LifelikeWorld');
+    var Tiger = require('../Entity/tiger'),
+        World = require('./world'),
+        PlantEater = require('../Entity/plantEater');
+    var Plant = require('../Entity/plant');
+    var LifelikeWorld = require('./lifelikeWorld');
 
 
     var plan = ['####################################################',
@@ -28,14 +26,11 @@ define(function(require){
 
     var description = {
       '#': World.Wall,
-      '@': Tiger.Tiger,
-      'O': PlantEater.PlantEater,
-      '*': Plant.Plant
+      '@': Tiger,
+      'O': PlantEater,
+      '*': Plant
     };
 
-    var valley = new LifelikeWorld.LifelikeWorld(
+    var valley = new LifelikeWorld(
       plan, description);
-    return valley;
-
-  }
-);
+    module.exports = valley;

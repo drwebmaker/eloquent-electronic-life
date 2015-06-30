@@ -1,11 +1,9 @@
-define(function(require) {
-
-  var Vector = require('Vector');
-  var Grid = require('Grid');
-  var View = require('View');
+  var Vector = require('./VectorModule');
+  var Grid = require('./grid');
+  var View = require('./ViewModule');
 
   function World(map, legend) {
-    var grid = new Grid.Grid(map[0].length, map.length);
+    var grid = new Grid(map[0].length, map.length);
     this.grid = grid;
     this.legend = legend;
 
@@ -38,7 +36,7 @@ define(function(require) {
       }, this);
     },
     letAct: function(critter, vector) {
-      var action = critter.act(new View.View(this, vector));
+      var action = critter.act(new View(this, vector));
       if (action && action.type == 'move') {
         var dest = this.checkDestination(action, vector);
         if (dest && this.grid.get(dest) == null) {
@@ -58,9 +56,7 @@ define(function(require) {
 
   function Wall() {}
 
-  return {
+ module.exports = {
     Wall: Wall,
     World: World
   };
-
-});

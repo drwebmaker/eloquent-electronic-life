@@ -1,7 +1,5 @@
-define(function(require){
-
-    var Vector = require('Vector');
-    var View = require('View');
+    var Vector = require('../Universe/VectorModule');
+    var View = require('../Universe/ViewModule');
 
     function PlantEater() {
       this.energy = 30;
@@ -40,8 +38,4 @@ define(function(require){
       }
     };
 
-    return {
-      PlantEater: PlantEater
-    };
-  }
-);
+    module.exports = PlantEater;

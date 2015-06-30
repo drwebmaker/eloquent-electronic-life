@@ -1,8 +1,5 @@
 // test: no
 
-define(function(world) {
-  "use strict";
-
   var world = require('Plan');
 
   var active = null;
@@ -53,6 +50,4 @@ define(function(world) {
   };
 
   window.animateWorld = function(world) { new Animated(world); };
-  return new Animated(world);
-
-});
+  module.exports = new Animated(world);

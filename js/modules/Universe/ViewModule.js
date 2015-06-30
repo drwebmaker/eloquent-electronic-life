@@ -1,6 +1,4 @@
-define(function (require) {
-
-  var Vector = require('Vector');
+  var Vector = require('./VectorModule');
 
   function View(world, vector) {
     this.world = world;
@@ -48,12 +46,9 @@ define(function (require) {
       return element.originChar;
   }
 
-  return {
+  module.exports = {
     View: View,
     randomElement: randomElement,
     elementFromChar: elementFromChar,
     charFromElement: charFromElement
   };
-
-
-});
