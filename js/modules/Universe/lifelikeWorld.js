@@ -8,7 +8,7 @@
   LifelikeWorld.prototype = Object.create(World.World.prototype);
 
   LifelikeWorld.prototype.letAct = function(critter, vector) {
-    var action = critter.act(new View(this, vector));
+    var action = critter.act(new View.View(this, vector));
     var handled = action &&
       action.type in actionTypes &&
       actionTypes[action.type].call(this, critter,

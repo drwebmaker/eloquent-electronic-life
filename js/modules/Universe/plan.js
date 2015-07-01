@@ -33,4 +33,5 @@
 
     var valley = new LifelikeWorld(
       plan, description);
+
     module.exports = valley;

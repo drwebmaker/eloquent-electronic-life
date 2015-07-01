@@ -36,7 +36,7 @@
       }, this);
     },
     letAct: function(critter, vector) {
-      var action = critter.act(new View(this, vector));
+      var action = critter.act(new View.View(this, vector));
       if (action && action.type == 'move') {
         var dest = this.checkDestination(action, vector);
         if (dest && this.grid.get(dest) == null) {
