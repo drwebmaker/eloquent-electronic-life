@@ -1,16 +1,23 @@
+/**
+ * @license eLife 1.0 Copyright (c) 2015, Valeriy Abornyev All Rights Reserved.
+ * Available via the MIT or new BSD license.
+ * see: https://github.com/drwebmaker/eloquent-electronic-life for details
+ */
+
 define(function(require){
 
-  var View = require('View');
-  var World = require('World');
+  var View = require('View'),
+      World = require('World'),
+      help = require('helperElements');
   
   function LifelikeWorld(map, legend) {
-    World.World.call(this, map, legend);
+    World.call(this, map, legend);
   }
 
-  LifelikeWorld.prototype = Object.create(World.World.prototype);
+  LifelikeWorld.prototype = Object.create(World.prototype);
 
   LifelikeWorld.prototype.letAct = function(critter, vector) {
-    var action = critter.act(new View.View(this, vector));
+    var action = critter.act(new View(this, vector));
     var handled = action &&
       action.type in actionTypes &&
       actionTypes[action.type].call(this, critter,
@@ -55,7 +62,7 @@ define(function(require){
     },
 
     reproduce: function(critter, vector, action) {
-      var baby = View.elementFromChar(this.legend,
+      var baby = help.elementFromChar(this.legend,
         critter.originChar);
       var dest = this.checkDestination(action, vector);
       if (dest == null ||
@@ -69,10 +76,5 @@ define(function(require){
 
   };
 
-  return {
-    LifelikeWorld: LifelikeWorld
-  };
-
-
-
+  return LifelikeWorld;
 });
