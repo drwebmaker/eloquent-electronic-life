@@ -1,16 +1,7 @@
 var elife = require('./js/modules/Universe/plan');
-//var world = require('./js/modules/Universe/world');
 
-
-function refreshMap() {
+setInterval(function() {
   elife.turn();
   console.log(elife.toString());
-}
+},200);
 
-function live() {
-  for (var count = 0; count < 10; count++) {
-    refreshMap();
-  }
-}
-
-console.log(live());
