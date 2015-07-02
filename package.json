@@ -1,0 +1,13 @@
+{
+  "name": "ElectronicLife.",
+  "version": "0.0.1",
+  "author": "Valeriy Abornyev",
+  "description": "Electronic life",
+  "devDependencies": {
+    "browserify": "latest"
+  },
+  "scripts": {
+    "build-js": "browserify js/modules/animateworld.js > js/app.js",
+    "watch-js": "watchify js/modules/animateworld.js -o js/app.js -vd"
+  }
+}

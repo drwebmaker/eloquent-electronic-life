@@ -1,6 +1,6 @@
 // test: no
 
-  var world = require('Plan');
+  var world = require('./Universe/plan');
 
   var active = null;
 
@@ -49,5 +49,4 @@
     this.button.style.color = "red";
   };
 
-  window.animateWorld = function(world) { new Animated(world); };
-  module.exports = new Animated(world);
+  window.animateWorld = function() { new Animated(world); };
